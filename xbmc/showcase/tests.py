@@ -1,0 +1,24 @@
+from django.test import TestCase
+
+from .templatetags.showcase_extras import thumbs
+
+
+THUMBS_SIMPLE ='<thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/vawVZynP3nxXYdohD6lOXN94b2L.jpg">http://cf2.imgobject.com/t/p/original/vawVZynP3nxXYdohD6lOXN94b2L.jpg</thumb>'
+
+THUMBS_FULL = '<thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/vawVZynP3nxXYdohD6lOXN94b2L.jpg">http://cf2.imgobject.com/t/p/original/vawVZynP3nxXYdohD6lOXN94b2L.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/c54HMRYDq5hdUUtwbTWcgIhPGOF.jpg">http://cf2.imgobject.com/t/p/original/c54HMRYDq5hdUUtwbTWcgIhPGOF.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/n56VFp3duXXeSsi2lKmsvZczhTG.jpg">http://cf2.imgobject.com/t/p/original/n56VFp3duXXeSsi2lKmsvZczhTG.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/3PpFW5V5fEZq3sdEIg9KQenrHtX.jpg">http://cf2.imgobject.com/t/p/original/3PpFW5V5fEZq3sdEIg9KQenrHtX.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/sWsJHHV3lgKnFHUAVBhOyxpRPb7.jpg">http://cf2.imgobject.com/t/p/original/sWsJHHV3lgKnFHUAVBhOyxpRPb7.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/jDejwTPLzmkAXPwCbjnZiBekVnf.jpg">http://cf2.imgobject.com/t/p/original/jDejwTPLzmkAXPwCbjnZiBekVnf.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/xtCrO1Tfm1sZhkbQUsAB8FHKQTE.jpg">http://cf2.imgobject.com/t/p/original/xtCrO1Tfm1sZhkbQUsAB8FHKQTE.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/sGkYdD8cnUW0TN2c9WwW9HNKu6v.jpg">http://cf2.imgobject.com/t/p/original/sGkYdD8cnUW0TN2c9WwW9HNKu6v.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/9uJf7GzX40P027Cugge5ebYvskA.jpg">http://cf2.imgobject.com/t/p/original/9uJf7GzX40P027Cugge5ebYvskA.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/acbp4D7hhqCvx5jhQlnY0KJ6CHJ.jpg">http://cf2.imgobject.com/t/p/original/acbp4D7hhqCvx5jhQlnY0KJ6CHJ.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/ukZzi5P6pxl3dmpRlmpou7O0Zx8.jpg">http://cf2.imgobject.com/t/p/original/ukZzi5P6pxl3dmpRlmpou7O0Zx8.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/zJhuagOOIfk88eqTUDsIgMBsBQ5.jpg">http://cf2.imgobject.com/t/p/original/zJhuagOOIfk88eqTUDsIgMBsBQ5.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/ss3REsMFZ8mTnWI8CTQcLOZi9VG.jpg">http://cf2.imgobject.com/t/p/original/ss3REsMFZ8mTnWI8CTQcLOZi9VG.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/6laDWCUsyHvooJPuvuQRZSZn7FE.jpg">http://cf2.imgobject.com/t/p/original/6laDWCUsyHvooJPuvuQRZSZn7FE.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/qExSboSqOwQ8d8AayS6e2bsWRCe.jpg">http://cf2.imgobject.com/t/p/original/qExSboSqOwQ8d8AayS6e2bsWRCe.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/aW3se5dy91rc2hIfzH8xASEdyDT.jpg">http://cf2.imgobject.com/t/p/original/aW3se5dy91rc2hIfzH8xASEdyDT.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/s6YKsCWYPmUlBvCzaVSCeJGm0Q.jpg">http://cf2.imgobject.com/t/p/original/s6YKsCWYPmUlBvCzaVSCeJGm0Q.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/5tW09e4LIofh3C5W7fNb06HRMdH.jpg">http://cf2.imgobject.com/t/p/original/5tW09e4LIofh3C5W7fNb06HRMdH.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/i2t3qomFsVnsP7BLDCtjv2YTHbY.jpg">http://cf2.imgobject.com/t/p/original/i2t3qomFsVnsP7BLDCtjv2YTHbY.jpg</thumb><thumb aspect="poster" preview="http://cf2.imgobject.com/t/p/w500/1XnsBSmwgj3wry2bwoWw1KqNUhv.jpg">http://cf2.imgobject.com/t/p/original/1XnsBSmwgj3wry2bwoWw1KqNUhv.jpg</thumb>'
+
+
+class ThumbsFilterTest(TestCase):
+
+	def test_simple_thumbs_filter(self):
+
+		expected = ['vawVZynP3nxXYdohD6lOXN94b2L']
+
+		self.assertEquals(expected, thumbs(THUMBS_SIMPLE))
+		
+
+	def test_full_thumbs_filter(self):
+
+		expected = ['vawVZynP3nxXYdohD6lOXN94b2L', 'c54HMRYDq5hdUUtwbTWcgIhPGOF', 'n56VFp3duXXeSsi2lKmsvZczhTG', '3PpFW5V5fEZq3sdEIg9KQenrHtX', 'sWsJHHV3lgKnFHUAVBhOyxpRPb7', 'jDejwTPLzmkAXPwCbjnZiBekVnf', 'xtCrO1Tfm1sZhkbQUsAB8FHKQTE', 'sGkYdD8cnUW0TN2c9WwW9HNKu6v', '9uJf7GzX40P027Cugge5ebYvskA', 'acbp4D7hhqCvx5jhQlnY0KJ6CHJ', 'ukZzi5P6pxl3dmpRlmpou7O0Zx8', 'zJhuagOOIfk88eqTUDsIgMBsBQ5', 'ss3REsMFZ8mTnWI8CTQcLOZi9VG', '6laDWCUsyHvooJPuvuQRZSZn7FE', 'qExSboSqOwQ8d8AayS6e2bsWRCe', 'aW3se5dy91rc2hIfzH8xASEdyDT', 's6YKsCWYPmUlBvCzaVSCeJGm0Q', '5tW09e4LIofh3C5W7fNb06HRMdH', 'i2t3qomFsVnsP7BLDCtjv2YTHbY', '1XnsBSmwgj3wry2bwoWw1KqNUhv']
+
+		self.assertEquals(expected, thumbs(THUMBS_FULL))
