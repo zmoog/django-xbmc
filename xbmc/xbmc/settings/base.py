@@ -92,6 +92,10 @@ DATABASE_ROUTERS = (
     'support.routers.AppRouter',
 )
 
+DATABASE_APPS_MAPPING = {
+    'showcase': 'xbmc'
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -154,3 +158,22 @@ REST_FRAMEWORK = {
 
 
 
+
+#INSTALLED_APPS += ("debug_toolbar",)
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            # 'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'loggers': {
+        'alchemy.accounts.models': {
+            'handlers': ['console'],
+            'level': 'DEBUG'
+        }
+    }
+}
