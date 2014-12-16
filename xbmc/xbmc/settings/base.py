@@ -33,7 +33,9 @@ DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'movies.zmoog.org'
+]
 
 
 # Application definition
