@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<ul>
+<table class="table table-hover">
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Directed by</th>
+    <th>Rating</th>
+  </tr>
 	{% for movie in movie_list %}
-	<li>
-		<a href="{% url 'showcase:movie-detail' movie.idmovie %}">{{ movie.c00 }} ({{ movie.c07 }})</a>
-	</li>
+	<tr>
+    <td>
+      <a href="{% url 'showcase:movie-detail' movie.idmovie %}">{{ movie.c00 }}</a>
+    </td>
+    <td>{{ movie.c07 }}</td>
+    <td>
+      {{ movie.c15 }}
+    </td>
+    <td>{{ movie.c05|floatformat:1 }}</td>
+	</tr>
 	{% endfor %}
-</ul>
+</table>
 
 {% comment %}
 
