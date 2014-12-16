@@ -151,6 +151,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Rest
 
