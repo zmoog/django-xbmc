@@ -1,5 +1,6 @@
 from django.views.generic import DetailView, ListView
-from .models import Movie
+
+from .models import Actors, Movie
 
 
 class MovieList(ListView):
@@ -10,3 +11,8 @@ class MovieList(ListView):
 
 class MovieDetail(DetailView):
     model = Movie
+
+
+class ActorDetail(DetailView):
+	model = Actors
+	context_object_name = 'actor'

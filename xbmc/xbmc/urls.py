@@ -22,6 +22,6 @@ urlpatterns = patterns('',
     # url(r'^admin_tools/', include('admin_tools.urls')),
     # url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^showcase/movies/', include('showcase.urls', namespace='showcase')),
+    url(r'^showcase/', include('showcase.urls', namespace='showcase')),
     url(r'^api/', include('api.urls')),
 )

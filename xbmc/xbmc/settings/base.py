@@ -93,6 +93,7 @@ DATABASES = {
     'xbmc': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, '..', '..', 'db', 'MyVideos75.db'),
+        #'TEST_NAME': os.path.join(BASE_DIR, '..', '..', 'db', 'MyVideos75.test.db'),
     }
     
 }
@@ -166,6 +167,9 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 10
 }
 
+# XBMC Showcase
+
+XBMC_MODELS_UNMANAGED = True
 
 
 
@@ -181,7 +185,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        'alchemy.accounts.models': {
+        'showcase.tests': {
             'handlers': ['console'],
             'level': 'DEBUG'
         }

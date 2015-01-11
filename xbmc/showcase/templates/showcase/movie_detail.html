@@ -3,10 +3,13 @@
 {% load staticfiles %}
 {% load showcase_extras %}
 
+{% block metatitle %}{{ object.c00 }} ({{ object.c07 }}){% endblock  %}
+
 {% block content %}
 
 <div class="page-header">
-    <h1>{{ object.c00 }} ({{ object.c07 }})</h1>
+    <h1>{{ object.c00 }} ({{ object.c07 }})
+    <small>{{object.c03}}</small></h1>
 </div>
 
 
@@ -14,17 +17,93 @@
     
     <div class="col-xs-4 col-sm-5 col-md-4">
         <img src="http://image.tmdb.org/t/p/w300/{{ object.c08|thumbs|first }}.jpg" data-holder-rendered="true" class="img-responsive">
+
+      <h3>Stream details</h3>
+      <p>
+
+          {% regroup object.file.streamdetails_set.all by istreamtype as streaminfo %}
+
+
+          {% for info in streaminfo %}
+
+          {% if info.grouper == 0 %}
+
+          <h5>
+            Video
+          </h5>
+
+          <ul>
+            {% for video in info.list %}
+            <li>{{ video.strvideocodec }} ({{ video.ivideowidth }} x {{ video.ivideoheight }} with aspect {{ video.fvideoaspect }})</li>
+            {% endfor %}
+          </ul>
+
+          {% endif %}
+
+          {% if info.grouper == 1 %}
+          <h5>
+            Audio
+          </h5>
+
+          <ul>
+            {% for video in info.list %}
+            <li>{{ video.straudiolanguage }} ({{ video.straudiocodec }}) </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if info.grouper == 2 %}
+
+          <h5>
+            Subs
+          </h5>
+
+          <ul>
+            {% for video in info.list %}
+            <li>{{ video.strsubtitlelanguage }}</li>
+            {% endfor %}
+          </ul>
+
+          {% endif %}
+
+          {% endfor %}
+
+      </p>
+
     </div>
+
 
     <div class="col-xs-8 col-sm-7 col-md-8">
         <p class="lead">{{ object.c01 }}</p>
 
         <dl class="dl-horizontal">
-          <dt>Directed</dt>
-          <dd>{{ object.c15 }}</dd>
 
+          <dt>Directed</dt>
+          {% comment %}
+          <dd>{{ object.c15 }}</dd>
+          {% endcomment %}
+
+          <dd>
+          {% for director in object.directors.all %}
+          <a href="{% url 'showcase:actor-detail' pk=director.idactor %}">{{ director.stractor }}</a>{% if not forloop.last %}, {% endif %}
+          {% empty %}
+          Not available
+          {% endfor %}
+          </dd>
+          
           <dt>Written</dt>
+          {% comment %}
           <dd>{{ object.c06 }}</dd>
+          {{ object.writers.all|join:", "}} 
+          {% endcomment %}
+
+          <dd>
+          {% for writer in object.writers.all %}
+          <a href="{% url 'showcase:actor-detail' pk=writer.idactor %}">{{ writer.stractor }}</a>{% if not forloop.last %}, {% endif %}
+          {% empty %}
+          Not available
+          {% endfor %}
+          </dd>
 
           <dt>Rating</dt>
           <dd>{{ object.c12 }}</dd>
@@ -38,6 +117,20 @@
         </dl>
 
     </div>
+
+
+
+    {% with youtube_video_id=object.c19|youtube|first %}
+    {% if youtube_video_id %}
+    <div class="col-xs-8 col-sm-7 col-md-8">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/{{ youtube_video_id }}?rel=0"></iframe>
+      </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    
+
 
 {% endblock %}
 
